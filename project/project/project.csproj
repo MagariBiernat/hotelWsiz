@@ -48,10 +48,4 @@
     <Folder Include="Areas\Customer\Views\" />
     <Folder Include="Areas\Customer\Views\Home\" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Remove="Views\Account\Register.cshtml" />
-    <Content Remove="Views\Shared\_LoginPartial.cshtml" />
-    <Content Remove="Areas\Customer\Views\_ViewImports.cshtml" />
-    <Content Remove="Areas\Customer\Views\_ViewStart.cshtml" />
-  </ItemGroup>
 </Project>
