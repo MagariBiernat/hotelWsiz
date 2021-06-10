@@ -14,13 +14,7 @@
     <None Remove="Views\Account\" />
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <None Remove="Data\" />
-    <None Remove="Areas\" />
-    <None Remove="Areas\Identity\" />
-    <None Remove="Areas\Identity\Pages\" />
-    <None Remove="Areas\Admin\" />
-    <None Remove="Areas\Customer\" />
-    <None Remove="Areas\Customer\Views\" />
-    <None Remove="Areas\Customer\Views\Home\" />
+    <None Remove="Models\AccountViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
@@ -40,12 +34,6 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Data\" />
-    <Folder Include="Areas\" />
-    <Folder Include="Areas\Identity\" />
-    <Folder Include="Areas\Identity\Pages\" />
-    <Folder Include="Areas\Admin\" />
-    <Folder Include="Areas\Customer\" />
-    <Folder Include="Areas\Customer\Views\" />
-    <Folder Include="Areas\Customer\Views\Home\" />
+    <Folder Include="Models\AccountViewModels\" />
   </ItemGroup>
 </Project>
