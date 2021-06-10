@@ -18,13 +18,14 @@ namespace project.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private SignInManager<ApplicationUser> _signInManager;
         private UserManager<ApplicationUser> _userManager;
+
+        private SignInManager<ApplicationUser> _signInManager;
 
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
-            _signInManager = signInManager;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
 
