@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,17 +9,19 @@ namespace project.Models
 {
     public class Hotel
     {
+        [Key]
+        //[ScaffoldColumn(false)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(255)]
         public string Name { get; set; }
 
-        public Country Country { get; set; }
 
         [Required]
         [Display(Name = "Country")]
-        public int CountryId { get; set; }
+        public string Country { get; set; }
 
         [Required]
         [MaxLength(50)]

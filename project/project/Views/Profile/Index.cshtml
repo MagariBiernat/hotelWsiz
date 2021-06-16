@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using project.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Profile";
+    var currentUser = await UserManager.GetUserAsync(User);
+}
+
+
+<div>
+    <div>
+        <p>You are signed in. Hello @currentUser.getFullName() !</p>
+    </div>
+
+    <div>
+        <p> @UserManager.</p>
+        <p> @ViewBag.FirstName</p>
+    </div>
+
+
+
+</div>

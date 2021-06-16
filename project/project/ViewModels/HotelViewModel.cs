@@ -11,6 +11,5 @@ namespace project.ViewModels
     {
         public Hotel Hotel { get; set; }
 
-        public IEnumerable<Country> Countries { get; set; }
     }
 }

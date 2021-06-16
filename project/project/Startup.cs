@@ -29,8 +29,9 @@ namespace project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite("Data Source=HotelReservationDatabase.db"));
+                options.UseSqlite("Data Source=HotelReservationDatabase2.db"));
 
+            
             //services.Configure<CookiePolicyOptions>(options =>
             //{
             //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -38,7 +39,7 @@ namespace project
             //    options.MinimumSameSitePolicy = SameSiteMode.None;
             //});
 
-            
+
 
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -65,6 +66,9 @@ namespace project
             {
                 app.UseDeveloperExceptionPage();
                 //app.UseDatabaseErrorPage();
+                //var options = new DbContextOptionsBuilder<ApplicationDbContext>().Options;
+                //var dbContext = new ApplicationDbContext(options);
+                //DbInitialize.Initialize(dbContext);
             }
             else
             {
@@ -72,7 +76,7 @@ namespace project
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            //app.UseStaticFiles();
+            app.UseStaticFiles();
 
             //app.UseCookiePolicy();
 

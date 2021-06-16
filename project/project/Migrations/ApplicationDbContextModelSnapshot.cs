@@ -202,6 +202,12 @@ namespace project.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("isSuperAdmin")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isWorker")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -212,20 +218,6 @@ namespace project.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("project.Models.Country", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("project.Models.Customer", b =>
@@ -258,8 +250,9 @@ namespace project.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -271,21 +264,45 @@ namespace project.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryId");
-
                     b.ToTable("Hotels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "Warsaw",
+                            Country = "Poland",
+                            Name = "Hotel Grand",
+                            Stars = 4
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "Warsaw",
+                            Country = "Poland",
+                            Name = "Hotel Superb",
+                            Stars = 4
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "Krakow",
+                            Country = "Poland",
+                            Name = "Hotel Tajwand",
+                            Stars = 5
+                        });
                 });
 
             modelBuilder.Entity("project.Models.Room", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RoomNumber")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("BedsQuantity")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("HotelId")
+                    b.Property<int>("HotelId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsApartament")
@@ -294,17 +311,106 @@ namespace project.Migrations
                     b.Property<double>("PricePerNight")
                         .HasColumnType("REAL");
 
-                    b.Property<int>("RoomNumber")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("StandardQuality")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("RoomNumber");
 
                     b.HasIndex("HotelId");
 
-                    b.ToTable("Room");
+                    b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            RoomNumber = 1,
+                            BedsQuantity = 2,
+                            HotelId = 1,
+                            IsApartament = false,
+                            PricePerNight = 200.0,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomNumber = 2,
+                            BedsQuantity = 2,
+                            HotelId = 1,
+                            IsApartament = false,
+                            PricePerNight = 250.0,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomNumber = 3,
+                            BedsQuantity = 2,
+                            HotelId = 1,
+                            IsApartament = false,
+                            PricePerNight = 200.0,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomNumber = 4,
+                            BedsQuantity = 2,
+                            HotelId = 1,
+                            IsApartament = false,
+                            PricePerNight = 300.0,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomNumber = 5,
+                            BedsQuantity = 2,
+                            HotelId = 1,
+                            IsApartament = false,
+                            PricePerNight = 250.0,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomNumber = 6,
+                            BedsQuantity = 2,
+                            HotelId = 1,
+                            IsApartament = false,
+                            PricePerNight = 200.0,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomNumber = 7,
+                            BedsQuantity = 2,
+                            HotelId = 1,
+                            IsApartament = false,
+                            PricePerNight = 250.0,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomNumber = 8,
+                            BedsQuantity = 4,
+                            HotelId = 1,
+                            IsApartament = true,
+                            PricePerNight = 400.0,
+                            StandardQuality = 3
+                        },
+                        new
+                        {
+                            RoomNumber = 9,
+                            BedsQuantity = 4,
+                            HotelId = 1,
+                            IsApartament = true,
+                            PricePerNight = 400.0,
+                            StandardQuality = 3
+                        },
+                        new
+                        {
+                            RoomNumber = 10,
+                            BedsQuantity = 5,
+                            HotelId = 1,
+                            IsApartament = true,
+                            PricePerNight = 500.0,
+                            StandardQuality = 3
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -358,22 +464,13 @@ namespace project.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("project.Models.Hotel", b =>
-                {
-                    b.HasOne("project.Models.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Country");
-                });
-
             modelBuilder.Entity("project.Models.Room", b =>
                 {
                     b.HasOne("project.Models.Hotel", null)
                         .WithMany("AllRooms")
-                        .HasForeignKey("HotelId");
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("project.Models.Hotel", b =>

@@ -8,10 +8,15 @@ namespace project.Models
 {
     public class Room
     {
-        public int Id { get; set; }
+        //[]
+        //public int Id { get; set; }
 
+        [Key]
         [Required]
         public int RoomNumber { get; set; }
+
+        [Required]
+        public int HotelId { get; set; }
 
         [Required]
         [Range(1,1000)]
