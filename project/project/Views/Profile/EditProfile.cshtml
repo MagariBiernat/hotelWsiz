@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using project.Models
+
+@model project.Models.ApplicationUser
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Profile";
+    var currentUser = await UserManager.GetUserAsync(User);
+    var firstName = currentUser?.FirstName;
+    var lastName = currentUser?.LastName;
+    ViewData["FullName"] = currentUser.getFullName();
+}
+
+<div>
+    <form asp-controller="Profile" asp-action="EditProfile" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" value="@firstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" value="@lastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+        <a asp-action="Index" asp-controller="Profile">Go back to profile</a>
+    </form>
+</div>

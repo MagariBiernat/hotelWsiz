@@ -6,19 +6,20 @@
 @{
     ViewData["Title"] = "Profile";
     var currentUser = await UserManager.GetUserAsync(User);
+    ViewData["FullName"] = currentUser.getFullName();
 }
 
 
 <div>
     <div>
-        <p>You are signed in. Hello @currentUser.getFullName() !</p>
+        <p>You are signed in. Hello @ViewData["FullName"] !</p>
+        <a asp-area="" asp-controller="Profile" asp-action="EditProfile"> Edit profile </a>
     </div>
 
     <div>
-        <p> @UserManager.</p>
-        <p> @ViewBag.FirstName</p>
+        <h2>Your reservations</h2>
+        <div>
+            Working on ...
+        </div>
     </div>
-
-
-
 </div>

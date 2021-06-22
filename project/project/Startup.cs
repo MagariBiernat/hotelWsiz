@@ -31,13 +31,13 @@ namespace project
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite("Data Source=HotelReservationDatabase2.db"));
 
-            
-            //services.Configure<CookiePolicyOptions>(options =>
-            //{
-            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-            //    options.CheckConsentNeeded = context => true;
-            //    options.MinimumSameSitePolicy = SameSiteMode.None;
-            //});
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
 
 
@@ -78,7 +78,7 @@ namespace project
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            //app.UseCookiePolicy();
+            app.UseCookiePolicy();
 
             app.UseAuthentication();
             app.UseSession();

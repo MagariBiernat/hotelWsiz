@@ -34,12 +34,48 @@ namespace project.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
-            var currentUser = await _userManager.GetUserAsync(User);
-            ViewBag.FirstName = currentUser.FirstName;
-            ViewBag.LastName = currentUser.LastName;
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult EditProfile()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProfile([Bind("FirstName, LastName")] ApplicationUser applicationUser)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var _user = await _userManager.GetUserAsync(User);
+                _user.FirstName = applicationUser.FirstName;
+                _user.LastName = applicationUser.LastName;
+
+                var result = await _userManager.UpdateAsync(_user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                AddErrors(result);
+            }
+
+            // whopsie
+            return View();
+        }
+
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
         }
     }
 }

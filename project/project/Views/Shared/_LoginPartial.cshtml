@@ -6,14 +6,15 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
         <div>
             @{
-                var currentUser = await UserManager.GetUserAsync(User);
-                var fullName = currentUser.getFullName();
+                var user = await UserManager.GetUserAsync(User);
+                ViewData["UserName"] = user.getFullName();
             }
             <div style="float:left; padding-left:20px;">
-                <a class="btn btn-link navbar-btn navbar-link" asp-area="" asp-controller="Profile" asp-action="Index">Hello @fullName!</a>
+                <a class="btn btn-link navbar-btn navbar-link" asp-area="" asp-controller="Profile" asp-action="Index">Hello @ViewData["UserName"] </a>
             </div>
             <div style="float:left; padding-left:20px;">
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>

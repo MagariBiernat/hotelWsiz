@@ -34,7 +34,7 @@ namespace project.Controllers
             _context = context;
         }
 
-        // GET: /<controller>/
+        // all hotels main page
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Index()
@@ -42,5 +42,29 @@ namespace project.Controllers
             return View(await _context.Hotels.ToListAsync());
         }
 
+
+        //get that one hotel
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> HotelIndex(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var hotel = await _context.Hotels
+                .SingleOrDefaultAsync(item => item.Id == id);
+
+            if(hotel == null)
+            {
+                return NotFound();
+            }
+
+            var rooms = await _context.Rooms.ToListAsync();
+            ViewBag.Rooms = rooms.FindAll(item => item.HotelId == id);
+           
+            return View(hotel);
+        }
     }
 }

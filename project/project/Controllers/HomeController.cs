@@ -15,11 +15,26 @@ namespace project.Controllers
     public class HomeController : Controller
     {
 
+        private UserManager<ApplicationUser> _userManager;
+
+        private SignInManager<ApplicationUser> _signInManager;
+
+        public HomeController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
 
 
         [AllowAnonymous]
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            //if (_signInManager.IsSignedIn(User))
+            //{
+            //    var user = await _userManager.GetUserAsync(User);
+            //    ViewData["FullName"] = user.getFullName();
+            //}
             return View();
         }
 

@@ -33,6 +33,10 @@ namespace project.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             ViewData["ReturnUrl"] = returnUrl;
             return View();
@@ -75,6 +79,11 @@ namespace project.Controllers
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
