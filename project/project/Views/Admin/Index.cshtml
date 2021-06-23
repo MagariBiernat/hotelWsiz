@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using project.Models
 
+@model IEnumerable<ApplicationUser>
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -19,4 +20,9 @@
     }
     <h2>Admin page</h2>
     <a asp-controller="Admin" asp-action="CreateNewAccount">Create a new worker's account</a>
+
+    <hr />
+
+
+    @await Html.PartialAsync("Partials/_WorkersList")
 </div>

@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using project.Models;
 using project.Models.AccountViewModels;
 using project.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace project.Controllers
 {
@@ -32,14 +33,25 @@ namespace project.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            if(!(await checkIfAdmin()))
+            {
+                RedirectHome();
+            }
+
+            var listAllWorkers = await _context.Users.Where(u => u.isSuperAdmin == false).Where(u => u.isWorker == true).ToListAsync();
+
+            return View(listAllWorkers);
         }
 
         [HttpGet]
-        public IActionResult CreateNewAccount()
+        public async Task<ActionResult> CreateNewAccount()
         {
+            if (!(await checkIfAdmin()))
+            {
+                RedirectHome();
+            }
             return View();
         }
 
@@ -63,6 +75,57 @@ namespace project.Controllers
 
             //Whopsiee
             return View(model);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteWorker(string? id)
+        {
+            if (!(await checkIfAdmin()))
+            {
+                RedirectHome();
+            }
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var worker = await _context.Users
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (worker == null)
+            {
+                return NotFound();
+            }
+
+            return View(worker);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id, string email)
+        {
+            var u = await _userManager.FindByIdAsync(id);
+            var u2 = await _userManager.FindByEmailAsync(email);
+
+            if (!(await checkIfAdmin()))
+            {
+                RedirectHome();
+            }
+
+            var worker = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
+            _context.Users.Remove(worker);
+            var result = await _context.SaveChangesAsync();
+
+            if (result == 0)
+            {
+                TempData["Message"] = "There was a problem while deleting user";
+                return RedirectToAction(nameof(Index));
+            }
+
+            TempData["Message"] = "Account has been deleted successfully";
+            return RedirectToAction(nameof(Index));
+            
         }
 
         private async Task<bool> checkIfAdmin()
