@@ -4,7 +4,7 @@ using System.Text;
 using project.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace project.Data
 {
@@ -24,7 +24,6 @@ namespace project.Data
         {
             modelBuilder.Entity<Room>().Property(f => f.Id).ValueGeneratedOnAdd();
 
-           
 
             modelBuilder.Entity<Hotel>().HasData(
                     new Hotel { Id = 1, Name = "Hotel Grand", City = "Warsaw", Country = "Poland", Stars = 4},
@@ -69,11 +68,6 @@ namespace project.Data
 
             base.OnModelCreating(modelBuilder);
         }
-
-        
-
-
-
 
     }
 }

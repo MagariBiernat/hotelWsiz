@@ -39,12 +39,14 @@ namespace project
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            
 
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                  .AddEntityFrameworkStores<ApplicationDbContext>()
                  .AddDefaultTokenProviders();
+
+            services.AddTransient<SeedUsers>();
 
             services.AddControllersWithViews();
 
@@ -60,7 +62,7 @@ namespace project
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedUsers seeder)
         {
             if (env.IsDevelopment())
             {
@@ -75,6 +77,8 @@ namespace project
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -87,6 +91,8 @@ namespace project
 
             app.UseAuthorization();
 
+
+            seeder.SeedDataAdmin();
 
 
             app.UseEndpoints(endpoints =>
