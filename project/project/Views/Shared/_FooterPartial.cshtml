@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var isAdmin = false;
+    if (SignInManager.IsSignedIn(User)) {
+        var user = await UserManager.GetUserAsync(User);
+        if (user.isSuperAdmin)
+        {
+            isAdmin = true;
+        }
+    }
+}
+
+
+<footer class="border-top footer text-muted">
+    @if (isAdmin)
+    {
+        <div class="container flex justify-between">
+            <p>&copy; @DateTime.Now.Year - HotelReservation</p>
+            <a asp-controller="Admin" asp-action="Index">Admin Panel</a>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - HotelReservation</p>
+        </div>
+    }
+</footer>

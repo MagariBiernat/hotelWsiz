@@ -21,6 +21,9 @@ namespace project.Models
             return this.FirstName + " " + this.LastName;
         }
 
+        //public string newPassword { get; set; }
+        //public string newPasswordConfirm { get; set; }
+
         //public override
     }
 }

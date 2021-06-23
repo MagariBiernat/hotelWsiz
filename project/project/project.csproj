@@ -17,6 +17,7 @@
     <None Remove="Models\AccountViewModels\" />
     <None Remove="Views\Hotel\" />
     <None Remove="Views\Profile\" />
+    <None Remove="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
@@ -39,5 +40,6 @@
     <Folder Include="Models\AccountViewModels\" />
     <Folder Include="Views\Hotel\" />
     <Folder Include="Views\Profile\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
 </Project>

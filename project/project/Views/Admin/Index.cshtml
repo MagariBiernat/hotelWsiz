@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using project.Models
+
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Admin page";
+    var tempMessage = (string)TempData["Message"];
+}
+
+<div>
+    @if (tempMessage != null)
+    {
+        <div>
+            <h2>@tempMessage</h2>
+        </div>
+    }
+    <h2>Admin page</h2>
+    <a asp-controller="Admin" asp-action="CreateNewAccount">Create a new worker's account</a>
+</div>

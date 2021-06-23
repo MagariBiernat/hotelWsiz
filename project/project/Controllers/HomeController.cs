@@ -28,7 +28,7 @@ namespace project.Controllers
 
 
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
             //if (_signInManager.IsSignedIn(User))
             //{

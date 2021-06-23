@@ -32,7 +32,6 @@ namespace project.Controllers
             _context = context;
         }
 
-
         [HttpGet]
         public ActionResult Index()
         {
@@ -49,7 +48,6 @@ namespace project.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditProfile([Bind("FirstName, LastName")] ApplicationUser applicationUser)
         {
-
             if (ModelState.IsValid)
             {
                 var _user = await _userManager.GetUserAsync(User);
@@ -59,16 +57,50 @@ namespace project.Controllers
                 var result = await _userManager.UpdateAsync(_user);
                 if (result.Succeeded)
                 {
+                    TempData["Message"] = "Profile edited successfully";
                     return RedirectToAction(nameof(Index));
                 }
-
                 AddErrors(result);
             }
-
             // whopsie
             return View();
         }
 
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword([Bind("newPassword, newPasswordConfirm")] ChangePasswordViewModel applicationUser)
+        {
+            if (ModelState.IsValid)
+            {
+                if(applicationUser.newPassword == applicationUser.newPasswordConfirm)
+                {
+                    var user = await _userManager.GetUserAsync(User);
+
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                    var result = await _userManager.ResetPasswordAsync(user, token, applicationUser.newPassword);
+
+                    if (result.Succeeded)
+                    {
+                        TempData["Message"] = "Password has been changed successfully";
+                        return RedirectToAction(nameof(Index));
+                    }
+
+                    AddErrors(result);
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Passwords do not match");
+                }
+            }
+            return View();
+        }
 
         private void AddErrors(IdentityResult result)
         {

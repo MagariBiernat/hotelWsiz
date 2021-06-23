@@ -3,6 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+project/.DS_Store
+
 # User-specific files
 *.rsuser
 *.suo
@@ -43,6 +45,9 @@ Generated\ Files/
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
+
+#Databases
+*.db
 
 # NUnit
 *.VisualState.xml

@@ -82,7 +82,6 @@ namespace project
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseCookiePolicy();
 
             app.UseAuthentication();
             app.UseSession();
@@ -111,6 +110,8 @@ namespace project
             //        template: "{area=Customer}/{controller=Home}/{action=Index}/{id?}"
             //        );
             //});
+            app.UseCookiePolicy();
+
         }
     }
 }

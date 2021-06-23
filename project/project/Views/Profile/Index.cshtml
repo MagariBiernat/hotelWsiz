@@ -7,14 +7,25 @@
     ViewData["Title"] = "Profile";
     var currentUser = await UserManager.GetUserAsync(User);
     ViewData["FullName"] = currentUser.getFullName();
+
+    var tempMessage = (string)TempData["Message"];
+
 }
 
 
 <div>
-    <div>
-        <p>You are signed in. Hello @ViewData["FullName"] !</p>
-        <a asp-area="" asp-controller="Profile" asp-action="EditProfile"> Edit profile </a>
-    </div>
+    @if (tempMessage != null)
+    {
+        <div>
+            <h2>@tempMessage</h2>
+        </div>
+    }
+
+<div>
+    <p>You are signed in. Hello @ViewData["FullName"] !</p>
+    <a asp-area="" asp-controller="Profile" asp-action="EditProfile"> Edit profile </a>
+    <a asp-area="" asp-controller="Profile" asp-action="ChangePassword"> Change password </a>
+</div>
 
     <div>
         <h2>Your reservations</h2>
