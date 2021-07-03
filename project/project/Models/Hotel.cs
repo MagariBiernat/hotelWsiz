@@ -10,14 +10,11 @@ namespace project.Models
     public class Hotel
     {
         [Key]
-        //[ScaffoldColumn(false)]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(255)]
         public string Name { get; set; }
-
 
         [Required]
         [Display(Name = "Country")]

@@ -293,9 +293,43 @@ namespace project.Migrations
                         });
                 });
 
+            modelBuilder.Entity("project.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("FromEmail")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("MessageContent")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ToEmail")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isAnswer")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("isAnswerTo")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isToWorker")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("project.Models.Room", b =>
                 {
-                    b.Property<int>("RoomNumber")
+                    b.Property<int>("RoomId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -311,10 +345,13 @@ namespace project.Migrations
                     b.Property<double>("PricePerNight")
                         .HasColumnType("REAL");
 
+                    b.Property<int>("RoomNumber")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("StandardQuality")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("RoomNumber");
+                    b.HasKey("RoomId");
 
                     b.HasIndex("HotelId");
 
@@ -323,92 +360,302 @@ namespace project.Migrations
                     b.HasData(
                         new
                         {
-                            RoomNumber = 1,
+                            RoomId = 1,
                             BedsQuantity = 2,
                             HotelId = 1,
                             IsApartament = false,
                             PricePerNight = 200.0,
+                            RoomNumber = 1,
                             StandardQuality = 2
                         },
                         new
                         {
-                            RoomNumber = 2,
+                            RoomId = 2,
                             BedsQuantity = 2,
                             HotelId = 1,
                             IsApartament = false,
                             PricePerNight = 250.0,
+                            RoomNumber = 2,
                             StandardQuality = 2
                         },
                         new
                         {
-                            RoomNumber = 3,
+                            RoomId = 3,
                             BedsQuantity = 2,
                             HotelId = 1,
                             IsApartament = false,
                             PricePerNight = 200.0,
+                            RoomNumber = 3,
                             StandardQuality = 2
                         },
                         new
                         {
-                            RoomNumber = 4,
+                            RoomId = 4,
                             BedsQuantity = 2,
                             HotelId = 1,
                             IsApartament = false,
                             PricePerNight = 300.0,
+                            RoomNumber = 4,
                             StandardQuality = 2
                         },
                         new
                         {
-                            RoomNumber = 5,
+                            RoomId = 5,
                             BedsQuantity = 2,
                             HotelId = 1,
                             IsApartament = false,
                             PricePerNight = 250.0,
+                            RoomNumber = 5,
                             StandardQuality = 2
                         },
                         new
                         {
-                            RoomNumber = 6,
+                            RoomId = 6,
                             BedsQuantity = 2,
                             HotelId = 1,
                             IsApartament = false,
                             PricePerNight = 200.0,
+                            RoomNumber = 6,
                             StandardQuality = 2
                         },
                         new
                         {
-                            RoomNumber = 7,
+                            RoomId = 7,
                             BedsQuantity = 2,
                             HotelId = 1,
                             IsApartament = false,
                             PricePerNight = 250.0,
+                            RoomNumber = 7,
                             StandardQuality = 2
                         },
                         new
                         {
+                            RoomId = 8,
+                            BedsQuantity = 4,
+                            HotelId = 1,
+                            IsApartament = true,
+                            PricePerNight = 400.0,
                             RoomNumber = 8,
-                            BedsQuantity = 4,
-                            HotelId = 1,
-                            IsApartament = true,
-                            PricePerNight = 400.0,
                             StandardQuality = 3
                         },
                         new
                         {
+                            RoomId = 9,
+                            BedsQuantity = 4,
+                            HotelId = 1,
+                            IsApartament = true,
+                            PricePerNight = 400.0,
                             RoomNumber = 9,
-                            BedsQuantity = 4,
-                            HotelId = 1,
-                            IsApartament = true,
-                            PricePerNight = 400.0,
                             StandardQuality = 3
                         },
                         new
                         {
-                            RoomNumber = 10,
+                            RoomId = 10,
                             BedsQuantity = 5,
                             HotelId = 1,
                             IsApartament = true,
                             PricePerNight = 500.0,
+                            RoomNumber = 10,
+                            StandardQuality = 3
+                        },
+                        new
+                        {
+                            RoomId = 11,
+                            BedsQuantity = 2,
+                            HotelId = 2,
+                            IsApartament = false,
+                            PricePerNight = 200.0,
+                            RoomNumber = 1,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 12,
+                            BedsQuantity = 2,
+                            HotelId = 2,
+                            IsApartament = false,
+                            PricePerNight = 250.0,
+                            RoomNumber = 2,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 13,
+                            BedsQuantity = 2,
+                            HotelId = 2,
+                            IsApartament = false,
+                            PricePerNight = 200.0,
+                            RoomNumber = 3,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 14,
+                            BedsQuantity = 2,
+                            HotelId = 2,
+                            IsApartament = false,
+                            PricePerNight = 300.0,
+                            RoomNumber = 4,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 15,
+                            BedsQuantity = 2,
+                            HotelId = 2,
+                            IsApartament = false,
+                            PricePerNight = 250.0,
+                            RoomNumber = 5,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 16,
+                            BedsQuantity = 2,
+                            HotelId = 2,
+                            IsApartament = false,
+                            PricePerNight = 200.0,
+                            RoomNumber = 6,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 17,
+                            BedsQuantity = 2,
+                            HotelId = 2,
+                            IsApartament = false,
+                            PricePerNight = 250.0,
+                            RoomNumber = 7,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 18,
+                            BedsQuantity = 4,
+                            HotelId = 2,
+                            IsApartament = true,
+                            PricePerNight = 400.0,
+                            RoomNumber = 8,
+                            StandardQuality = 3
+                        },
+                        new
+                        {
+                            RoomId = 19,
+                            BedsQuantity = 4,
+                            HotelId = 2,
+                            IsApartament = true,
+                            PricePerNight = 400.0,
+                            RoomNumber = 9,
+                            StandardQuality = 3
+                        },
+                        new
+                        {
+                            RoomId = 20,
+                            BedsQuantity = 5,
+                            HotelId = 2,
+                            IsApartament = true,
+                            PricePerNight = 500.0,
+                            RoomNumber = 10,
+                            StandardQuality = 3
+                        },
+                        new
+                        {
+                            RoomId = 21,
+                            BedsQuantity = 2,
+                            HotelId = 3,
+                            IsApartament = false,
+                            PricePerNight = 200.0,
+                            RoomNumber = 1,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 22,
+                            BedsQuantity = 2,
+                            HotelId = 3,
+                            IsApartament = false,
+                            PricePerNight = 250.0,
+                            RoomNumber = 2,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 23,
+                            BedsQuantity = 2,
+                            HotelId = 3,
+                            IsApartament = false,
+                            PricePerNight = 200.0,
+                            RoomNumber = 3,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 24,
+                            BedsQuantity = 2,
+                            HotelId = 3,
+                            IsApartament = false,
+                            PricePerNight = 300.0,
+                            RoomNumber = 4,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 25,
+                            BedsQuantity = 2,
+                            HotelId = 3,
+                            IsApartament = false,
+                            PricePerNight = 250.0,
+                            RoomNumber = 5,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 26,
+                            BedsQuantity = 2,
+                            HotelId = 3,
+                            IsApartament = false,
+                            PricePerNight = 200.0,
+                            RoomNumber = 6,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 27,
+                            BedsQuantity = 2,
+                            HotelId = 3,
+                            IsApartament = false,
+                            PricePerNight = 250.0,
+                            RoomNumber = 7,
+                            StandardQuality = 2
+                        },
+                        new
+                        {
+                            RoomId = 28,
+                            BedsQuantity = 4,
+                            HotelId = 3,
+                            IsApartament = true,
+                            PricePerNight = 400.0,
+                            RoomNumber = 8,
+                            StandardQuality = 3
+                        },
+                        new
+                        {
+                            RoomId = 29,
+                            BedsQuantity = 4,
+                            HotelId = 3,
+                            IsApartament = true,
+                            PricePerNight = 400.0,
+                            RoomNumber = 9,
+                            StandardQuality = 3
+                        },
+                        new
+                        {
+                            RoomId = 30,
+                            BedsQuantity = 5,
+                            HotelId = 3,
+                            IsApartament = true,
+                            PricePerNight = 500.0,
+                            RoomNumber = 10,
                             StandardQuality = 3
                         });
                 });

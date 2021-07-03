@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using project.Models
+
+@model project.Models.Message
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Answer Message";
+}
+
+<div>
+    <h2> Message Content</h2>
+
+    <p>@Model.MessageContent</p>
+    <form asp-controller="Messages" asp-action="AnswerMessage" method="post" style="width:350px">
+        <h2>Answer a message</h2>
+        <hr />
+        <div class="form-group">
+            <label asp-for="MessageContent" style="width:185px; display:inline-block;"></label>
+            <input asp-for="MessageContent" class="form-control" />
+            <span asp-validation-for="MessageContent" class="text-danger"></span>
+        </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <button type="submit" class="btn btn-default" style="float:right;">Answer</button>
+        <a asp-action="Index" asp-controller="Admin">Go back to messages</a>
+    </form>
+</div>

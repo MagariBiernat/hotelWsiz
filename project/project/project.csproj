@@ -19,6 +19,8 @@
     <None Remove="Views\Profile\" />
     <None Remove="Views\Admin\" />
     <None Remove="Views\Admin\Partials\" />
+    <None Remove="Views\Messages\" />
+    <None Remove="ChartJSCore" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
@@ -33,6 +35,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.7" />
+    <PackageReference Include="ChartJSCore" Version="1.5.8" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
@@ -43,5 +46,6 @@
     <Folder Include="Views\Profile\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Admin\Partials\" />
+    <Folder Include="Views\Messages\" />
   </ItemGroup>
 </Project>

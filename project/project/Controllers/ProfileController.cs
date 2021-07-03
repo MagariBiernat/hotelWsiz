@@ -35,6 +35,7 @@ namespace project.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+
             return View();
         }
 

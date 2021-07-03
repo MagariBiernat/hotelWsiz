@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using project.Models
+
+@model project.Models.Message
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Messages";
+
+    var user = await UserManager.GetUserAsync(User);
+
+    var isWorker = user.isWorker || user.isSuperAdmin;
+}
+
+<div>
+
+    <form asp-controller="Messages" asp-action="NewMessage" method="post" style="width:350px">
+        <h2>Send a new message</h2>
+    </form>
+    @if (isWorker)
+    {
+
+    }
+</div>

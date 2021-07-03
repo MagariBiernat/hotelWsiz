@@ -79,7 +79,7 @@ namespace project.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> DeleteWorker(string? id)
+        public async Task<IActionResult> DeleteWorker(string id)
         {
             if (!(await checkIfAdmin()))
             {

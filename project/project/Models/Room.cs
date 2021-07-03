@@ -9,9 +9,8 @@ namespace project.Models
 {
     public class Room
     {
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int RoomId { get; set; }
 
         [Required]
         public int RoomNumber { get; set; }
@@ -32,8 +31,6 @@ namespace project.Models
 
         [Required]
         public bool IsApartament { get; set; }
-
-        
     }
 
 }
