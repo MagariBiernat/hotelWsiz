@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using project.Data;
 using project.Models;
 using project.Models.AccountViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -65,6 +66,29 @@ namespace project.Controllers
             ViewBag.Rooms = rooms.FindAll(item => item.HotelId == id);
            
             return View(hotel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> BookRoom(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var rooms = await _context.Rooms.ToListAsync();
+
+            rooms = rooms.FindAll(r => r.HotelId == id);
+
+            ViewData["RoomId"] = new SelectList(rooms, "RoomId", "RoomId");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BookRoom(Booking booking)
+        {
+            return View();
         }
     }
 }

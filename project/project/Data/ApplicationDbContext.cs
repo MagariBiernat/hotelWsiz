@@ -10,7 +10,7 @@ namespace project.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Message> Messages { get; set; }
@@ -24,6 +24,7 @@ namespace project.Data
         {
             modelBuilder.Entity<Room>().Property(f => f.RoomId).ValueGeneratedOnAdd();
             modelBuilder.Entity<Message>().Property(f => f.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Booking>().Property(f => f.Id).ValueGeneratedOnAdd();
 
 
             modelBuilder.Entity<Hotel>().HasData(

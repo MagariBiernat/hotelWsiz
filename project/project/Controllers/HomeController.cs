@@ -35,7 +35,7 @@ namespace project.Controllers
             //{
             //    var user = await _userManager.GetUserAsync(User);
             //    ViewData["FullName"] = user.getFullName();
-            //}
+            //};
             return View(await _context.Hotels.ToListAsync());
         }
 

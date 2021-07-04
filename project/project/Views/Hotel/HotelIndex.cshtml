@@ -22,13 +22,13 @@
     </div>
 
     @foreach (var item in rooms)
-            {
-                <div>
-                    Room number : @item.RoomNumber
-                </div>
-                <div>
-                    Quality type : @item.StandardQuality
-                </div>
-            }
-
+        {
+            <div>
+                Room number : @item.RoomNumber
+            </div>
+            <div>
+                Quality type : @item.StandardQuality
+            </div>
+        }
+    <a asp-controller="Hotel" asp-action="BookRoom" asp-route-id="@Model.Id"> Book Room </a>
 </div>
