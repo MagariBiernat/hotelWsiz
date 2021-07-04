@@ -27,9 +27,9 @@ namespace project.Data
 
 
             modelBuilder.Entity<Hotel>().HasData(
-                    new Hotel { Id = 1, Name = "Hotel Grand", City = "Warsaw", Country = "Poland", Stars = 4},
-                    new Hotel { Id = 2, Name = "Hotel Superb", City = "Warsaw", Country = "Poland", Stars = 4  },
-                    new Hotel { Id = 3, Name = "Hotel Tajwand", City = "Krakow", Country = "Poland", Stars = 5 }
+                    new Hotel { Id = 1, Name = "Hotel Grand", City = "Warsaw", Country = "Poland", Stars = 4, urlToImage = ""},
+                    new Hotel { Id = 2, Name = "Hotel Superb", City = "Warsaw", Country = "Poland", Stars = 4, urlToImage = "" },
+                    new Hotel { Id = 3, Name = "Hotel Tajwand", City = "Krakow", Country = "Poland", Stars = 5, urlToImage = "" }
                 );
 
             

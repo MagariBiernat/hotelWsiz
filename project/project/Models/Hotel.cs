@@ -10,6 +10,7 @@ namespace project.Models
     public class Hotel
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
@@ -27,6 +28,8 @@ namespace project.Models
         [Required]
         [Range(1,5)]
         public int Stars { get; set; }
+
+        public string urlToImage { get; set; }
 
         public List<Room> AllRooms { get; set; }
 
