@@ -11,13 +11,13 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div>
+<div class="hotelsContainer">
     @foreach (var item in Model)
-            {
-                <div>@Html.DisplayFor(modelItem => item.Name)</div>
-                <a asp-action="HotelIndex" asp-route-id="@item.Id">See more</a>
-            }
-
-    @Model.Count()
-
+        {
+            <div class="hotelContainer" style="background-image: url('@item.urlToImage');">
+                <div class="hotelContainerAlpha">
+                    <a class="hotelName" asp-action="HotelIndex" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+                </div>
+            </div>
+        }
 </div>

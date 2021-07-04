@@ -1,7 +1,34 @@
-﻿@{
-    ViewData["Title"] = "About";
-}
-<h1>@ViewData["Title"]</h1>
+﻿@model project.Models.Hotel
 
-<p>About page, nothing to see in here.</p>
-<p>Yet.</p>
+@{
+    var HotelName = Model.Name;
+    ViewData["Title"] = HotelName;
+
+    List<project.Models.Room> rooms = ViewBag.Rooms;
+}
+
+
+<div>
+    <div>
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div>
+        @Html.DisplayFor(model => model.Stars) Stars
+    </div>
+
+    <div>
+        Total rooms count @rooms.Count()
+    </div>
+
+    @foreach (var item in rooms)
+    {
+        <div>
+            Room number : @item.RoomNumber
+        </div>
+        <div>
+            Quality type : @item.StandardQuality
+        </div>
+    }
+
+</div>

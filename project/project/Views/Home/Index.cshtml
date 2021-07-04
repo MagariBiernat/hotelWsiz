@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using project.Models
 
+@model IEnumerable<project.Models.Hotel>
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
@@ -8,25 +9,13 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Hotel Reservation App</h1>
-
-
-    @if (SignInManager.IsSignedIn(User))
-            {
-                <div>
-                    <p>You are signed in. Hello @UserManager.GetUserName(User) !</p>
-                </div>
-            }
-    else
-            {
-                <div>
-                    <p> You are not signed in.</p>
-                </div>
-            }
-
-    <div>
-        <a asp-area="" asp-controller="Hotel" asp-action="Index" >See Hotels</a>
-    </div>
-
+<div class="hotelsContainer">
+    @foreach (var item in Model)
+    {
+        <div class="hotelContainer" style="background-image: url('@item.urlToImage');">
+            <div class="hotelContainerAlpha">
+                <a class="hotelName" asp-controller="Hotel" asp-action="HotelIndex" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+            </div>
+        </div>
+    }
 </div>

@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using project.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace project.Controllers
 {
@@ -15,27 +17,26 @@ namespace project.Controllers
     public class HomeController : Controller
     {
 
+        private readonly ApplicationDbContext _context;
         private UserManager<ApplicationUser> _userManager;
-
         private SignInManager<ApplicationUser> _signInManager;
 
-        public HomeController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public HomeController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
-
-
         [AllowAnonymous]
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
             //if (_signInManager.IsSignedIn(User))
             //{
             //    var user = await _userManager.GetUserAsync(User);
             //    ViewData["FullName"] = user.getFullName();
             //}
-            return View();
+            return View(await _context.Hotels.ToListAsync());
         }
 
         [AllowAnonymous]
