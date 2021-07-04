@@ -6,25 +6,13 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    ViewData["Title"] = "Messages";
-
-    var user = await UserManager.GetUserAsync(User);
-
-    var isWorker = user.isWorker || user.isSuperAdmin;
-
-    var tempMessage = (string)TempData["Message"];
+    ViewData["Title"] = "All Messages";
 }
 
 <div>
     <a asp-controller="Messages" asp-action="NewMessage">Send a new message</a>
     <a asp-controller="Messages" asp-action="AllMessages"> See previous messages </a>
 
-    @if (tempMessage != null)
-    {
-        <div>
-            <h2>@tempMessage</h2>
-        </div>
-    }
 
     @if (Model.Count() != 0)
     {
@@ -34,12 +22,9 @@
                     <th>
                         Message
                     </th>
-                    @if (isWorker)
-                    {
-                        <th>
-                            From
-                        </th>
-                    }
+                    <th>
+                        From
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -49,14 +34,8 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.MessageContent)
                         </td>
-                        @if (isWorker)
-                        {
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FromEmail)
-                            </td>
-                        }
                         <td>
-                            <a asp-action="AnswerMessage" asp-route-id="@item.Id"> Answer </a>
+                            @Html.DisplayFor(modelItem => item.FromEmail)
                         </td>
                     </tr>
                 }
@@ -67,6 +46,8 @@
     }
     else
     {
-        <p>You don't have any new messages</p>
+        <p>You don't have any messages</p>
     }
+
+    <a asp-controller="Messages" asp-action="Index" > Go back </a>
 </div>

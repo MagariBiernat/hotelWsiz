@@ -16,19 +16,17 @@ namespace project.Models
         [MaxLength(255)]
         public string MessageContent { get; set; }
 
-        [Required]
-        public int FromEmail { get; set; }
+        public string FromEmail { get; set; }
 
-        public int ToEmail { get; set; }
+        public string ToEmail { get; set; }
 
-        [Required]
         public bool isToWorker { get; set; }
 
-        [Required]
         public DateTime DateTime { get; set; }
 
-        [Required]
         public bool isAnswer { get; set; }
+
+        public bool isAnswered { get; set; }
     
         public int isAnswerTo { get; set; }
 

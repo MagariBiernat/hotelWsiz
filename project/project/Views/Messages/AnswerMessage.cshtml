@@ -14,11 +14,10 @@
 
     <p>@Model.MessageContent</p>
     <form asp-controller="Messages" asp-action="AnswerMessage" method="post" style="width:350px">
-        <h2>Answer a message</h2>
         <hr />
         <div class="form-group">
             <label asp-for="MessageContent" style="width:185px; display:inline-block;"></label>
-            <input asp-for="MessageContent" class="form-control" />
+            <input asp-for="MessageContent" class="form-control" value="" />
             <span asp-validation-for="MessageContent" class="text-danger"></span>
         </div>
         <div asp-validation-summary="All" class="text-danger"></div>

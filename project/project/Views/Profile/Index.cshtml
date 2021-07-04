@@ -24,14 +24,9 @@
         <p>You are signed in. Hello @ViewData["FullName"] !</p>
         <a asp-area="" asp-controller="Profile" asp-action="EditProfile"> Edit profile </a>
         <a asp-area="" asp-controller="Profile" asp-action="ChangePassword"> Change password </a>
-        @if (currentUser.isWorker)
-        {
-            <a asp-area="" asp-controller="Messages" asp-action="IndexWorker"> See messages </a>
-        }
-        else
-        {
-            <a asp-area="" asp-controller="Messages" asp-action="IndexCustomer"> Contact staff </a>
-        }
+
+            <a asp-area="" asp-controller="Messages" asp-action="Index"> See messages </a>
+
     </div>
 
     <div>

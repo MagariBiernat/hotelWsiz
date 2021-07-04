@@ -11,15 +11,32 @@
     var user = await UserManager.GetUserAsync(User);
 
     var isWorker = user.isWorker || user.isSuperAdmin;
+
 }
 
 <div>
 
     <form asp-controller="Messages" asp-action="NewMessage" method="post" style="width:350px">
-        <h2>Send a new message</h2>
-    </form>
-    @if (isWorker)
-    {
+        <h4>Send a new message</h4>
+        <hr />
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="isAnswer" type="hidden" value="no" />
+        <input asp-for="FromEmail" type="hidden" value="@user.Email" />
 
-    }
+        @if (isWorker)
+        {
+            <h6>The message will be sent to everyone.</h6>
+        }
+        else
+        {
+            <h6>This message will be sent to workers</h6>
+        }
+
+        <div class="form-group">
+            <label asp-for="MessageContent" style="width:185px; display:inline-block;"></label>
+            <input asp-for="MessageContent" class="form-control" />
+            <span asp-validation-for="MessageContent" class="text-danger"></span>
+        </div>
+    </form>
+
 </div>

@@ -9,8 +9,8 @@ using project.Data;
 namespace project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210702160853_migracjaa2349123")]
-    partial class migracjaa2349123
+    [Migration("20210704133305_mig")]
+    partial class mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -264,6 +264,9 @@ namespace project.Migrations
                     b.Property<int>("Stars")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("urlToImage")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("Hotels");
@@ -275,7 +278,8 @@ namespace project.Migrations
                             City = "Warsaw",
                             Country = "Poland",
                             Name = "Hotel Grand",
-                            Stars = 4
+                            Stars = 4,
+                            urlToImage = ""
                         },
                         new
                         {
@@ -283,7 +287,8 @@ namespace project.Migrations
                             City = "Warsaw",
                             Country = "Poland",
                             Name = "Hotel Superb",
-                            Stars = 4
+                            Stars = 4,
+                            urlToImage = ""
                         },
                         new
                         {
@@ -291,7 +296,8 @@ namespace project.Migrations
                             City = "Krakow",
                             Country = "Poland",
                             Name = "Hotel Tajwand",
-                            Stars = 5
+                            Stars = 5,
+                            urlToImage = ""
                         });
                 });
 
@@ -304,21 +310,24 @@ namespace project.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("FromEmail")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("FromEmail")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("MessageContent")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ToEmail")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ToEmail")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("isAnswer")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("isAnswerTo")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isAnswered")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("isToWorker")
