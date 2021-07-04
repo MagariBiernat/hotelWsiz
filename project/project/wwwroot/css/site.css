@@ -1,5 +1,8 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+* {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
 
 a.navbar-brand {
   white-space: normal;
@@ -7,28 +10,40 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-/* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: black;
+}
+
+a:hover {
+   color: black;
 }
 
 .btn-primary {
-  color: #fff;
+  color: black;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+.btn-link {
+    color: black;
+}
+
+.btn-link:hover {
+    color: black;
+    border-radius: 0;
+    background-color: lightgreen;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
+  color: black;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
 html {
   font-size: 14px;
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -51,23 +66,21 @@ button.accept-policy {
   line-height: inherit;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+  line-height: 60px;
 }
 
 
@@ -93,11 +106,21 @@ body {
     width: 400px;
     height: 200px;
     border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .hotelName {
     color: white;
     font-size: 30px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.hotelName:hover {
+    color: lightgreen;
+    font-size: 30px;
+}
+
+.bookButton {
+    background-color: lightgreen;
+    width: 100px;
+    text-align: center;
 }

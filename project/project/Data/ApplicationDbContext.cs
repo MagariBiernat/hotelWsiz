@@ -30,7 +30,8 @@ namespace project.Data
             modelBuilder.Entity<Hotel>().HasData(
                     new Hotel { Id = 1, Name = "Hotel Grand", City = "Warsaw", Country = "Poland", Stars = 4, urlToImage = "https://u.profitroom.pl/2017.hotelsopot.eu/thumb/1920x1080/uploads/HS_foto.jpg" },
                     new Hotel { Id = 2, Name = "Hotel Superb", City = "Warsaw", Country = "Poland", Stars = 4, urlToImage = "https://www.promenadahotel.pl/htm/a/foto/glowna/Promenada-18x.jpg" },
-                    new Hotel { Id = 3, Name = "Hotel Tajwand", City = "Krakow", Country = "Poland", Stars = 5, urlToImage = "https://grandhotelkielce.pl/wp-content/uploads/2020/11/bw.jpg" }
+                    new Hotel { Id = 3, Name = "Hotel Tajwand", City = "Krakow", Country = "Poland", Stars = 5, urlToImage = "https://u.profitroom.pl/2018.windsorhotel.pl/thumb/1200x630/uploads/HotelWindsorwJachrance_HR_257.jpg" },
+                    new Hotel { Id = 4, Name = "Hotel Shine", City = "Athnes", Country = "Greece", Stars = 5, urlToImage = "https://r.cdn.redgalaxy.com/http/o2/TUI/hotels/AYT53013/S20/14283763.jpg" }
                 );
 
             
@@ -65,7 +66,13 @@ namespace project.Data
                     new Room { RoomId = 27, RoomNumber = 7, HotelId = 3, PricePerNight = 250, StandardQuality = 2, BedsQuantity = 2, IsApartament = false },
                     new Room { RoomId = 28, RoomNumber = 8, HotelId = 3, PricePerNight = 400, StandardQuality = 3, BedsQuantity = 4, IsApartament = true },
                     new Room { RoomId = 29, RoomNumber = 9, HotelId = 3, PricePerNight = 400, StandardQuality = 3, BedsQuantity = 4, IsApartament = true },
-                    new Room { RoomId = 30, RoomNumber = 10, HotelId = 3, PricePerNight = 500, StandardQuality = 3, BedsQuantity = 5, IsApartament = true }
+                    new Room { RoomId = 30, RoomNumber = 10, HotelId = 3, PricePerNight = 500, StandardQuality = 3, BedsQuantity = 5, IsApartament = true },
+                    new Room { RoomId = 31, RoomNumber = 1, HotelId = 4, PricePerNight = 300, StandardQuality = 2, BedsQuantity = 2, IsApartament = false },
+                    new Room { RoomId = 32, RoomNumber = 2, HotelId = 4, PricePerNight = 250, StandardQuality = 2, BedsQuantity = 2, IsApartament = false },
+                    new Room { RoomId = 33, RoomNumber = 3, HotelId = 4, PricePerNight = 200, StandardQuality = 2, BedsQuantity = 2, IsApartament = false },
+                    new Room { RoomId = 34, RoomNumber = 4, HotelId = 4, PricePerNight = 250, StandardQuality = 2, BedsQuantity = 2, IsApartament = false },
+                    new Room { RoomId = 35, RoomNumber = 5, HotelId = 4, PricePerNight = 400, StandardQuality = 3, BedsQuantity = 4, IsApartament = true },
+                    new Room { RoomId = 36, RoomNumber = 6, HotelId = 4, PricePerNight = 400, StandardQuality = 3, BedsQuantity = 4, IsApartament = true }
                 );
 
             base.OnModelCreating(modelBuilder);
