@@ -31,6 +31,8 @@ namespace project.Models
 
         [Required]
         public bool isAvailable { get; set; }
+
+        public string urlToImage { get; set; }
     }
 
 }
