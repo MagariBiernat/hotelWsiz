@@ -78,9 +78,9 @@ namespace project.Controllers
 
             var rooms = await _context.Rooms.ToListAsync();
 
-            rooms = rooms.FindAll(r => r.HotelId == id);
+            var room = rooms.SingleOrDefault(item => item.RoomId == id);
 
-            ViewData["RoomId"] = new SelectList(rooms, "RoomId", "RoomId");
+            ViewBag.Room = room;
             return View();
         }
 

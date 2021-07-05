@@ -28,7 +28,7 @@
     <div class="roomsContainer">
         @foreach (var item in rooms)
         {
-            <div class="roomContainer" style="background-image: url('http://cdn.cnn.com/cnnnext/dam/assets/140127103345-peninsula-shanghai-deluxe-mock-up.jpg');">
+            <div class="roomContainer" style="background-image: url('@item.urlToImage');">
                 <div class="roomContainerAlpha">
                     <a class="hotelName" asp-controller="Hotel" asp-action="BookRoom" asp-route-id="@item.RoomId">
                         ⭑⭑⭑⭑
