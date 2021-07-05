@@ -6,32 +6,38 @@
     ViewData["Title"] = "Book Room";
 }
 
-<h2>Create</h2>
+@*<h2>Create</h2>
 <h4 class="text-danger">@ViewBag.Status</h4>
-<h4>Booking</h4>
+<h4>Booking</h4>*@
+
+<div class="hotelHeader" style="background-image: url('http://cdn.cnn.com/cnnnext/dam/assets/140127103345-peninsula-shanghai-deluxe-mock-up.jpg');">
+    <div class="hotelHeaderAlpha">
+        <p class="hotelHeaderName">Book choosen room</p>
+    </div>
+</div>
 
 <hr />
-<div>
-    <div class="col-md-4">
+<div class="bookPage">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
+            <div class="dateContainer">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndDate" class="control-label"></label>
+                    <input asp-for="EndDate" class="form-control" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="RoomId" class="control-label"></label>
                 <select asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
-            </div>
+            </div>*@
             <div class="bookButton">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Book" class="btn btn-default" />
             </div>
         </form>
-    </div>
 </div>

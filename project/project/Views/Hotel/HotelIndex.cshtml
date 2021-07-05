@@ -3,13 +3,17 @@
 @{
     var HotelName = Model.Name;
     ViewData["Title"] = HotelName;
-
     List<project.Models.Room> rooms = ViewBag.Rooms;
 }
 
+<div class="hotelHeader" style="background-image: url('@Html.DisplayFor(model => model.urlToImage)');">
+    <div class="hotelHeaderAlpha">
+        <p class="hotelHeaderName">@Html.DisplayFor(model => model.Name)</p>
+    </div>
+</div>
 
 <div>
-    <div>
+    @*<div>
         @Html.DisplayFor(model => model.Name)
     </div>
 
@@ -19,16 +23,31 @@
 
     <div>
         Total rooms count @rooms.Count()
-    </div>
+    </div>*@
 
-    @foreach (var item in rooms)
+    <div class="roomsContainer">
+        @foreach (var item in rooms)
         {
-            <div>
-                Room number : @item.RoomNumber
-            </div>
-            <div>
-                Quality type : @item.StandardQuality
+            <div class="roomContainer" style="background-image: url('http://cdn.cnn.com/cnnnext/dam/assets/140127103345-peninsula-shanghai-deluxe-mock-up.jpg');">
+                <div class="roomContainerAlpha">
+                    <a class="hotelName" asp-controller="Hotel" asp-action="BookRoom" asp-route-id="@item.RoomId">
+                        ⭑⭑⭑⭑
+                        <br />
+                        @item.PricePerNight PLN
+                    </a>
+                </div>
             </div>
         }
-    <a asp-controller="Hotel" asp-action="BookRoom" asp-route-id="@Model.Id"> Book Room </a>
+    </div>
+
+    @*@foreach (var item in rooms)
+    {
+        <div>
+            Room number : @item.RoomNumber
+        </div>
+        <div>
+            Quality type : @item.StandardQuality
+        </div>
+    }*@
+    @*<a asp-controller="Hotel" asp-action="BookRoom" asp-route-id="@Model.Id"> Book Room </a>*@
 </div>
