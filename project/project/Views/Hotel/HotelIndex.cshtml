@@ -29,9 +29,9 @@
         @foreach (var item in rooms)
         {
 
-            @{
-                string stars = new String('⭑', item.StandardQuality);
-            }
+            
+            string stars = new String('⭑', item.StandardQuality);
+            
 
             <div class="roomContainer" style="background-image: url('@item.urlToImage');">
                 <div class="roomContainerAlpha">
