@@ -28,10 +28,15 @@
     <div class="roomsContainer">
         @foreach (var item in rooms)
         {
+
+            @{
+                string stars = new String('⭑', item.StandardQuality);
+            }
+
             <div class="roomContainer" style="background-image: url('@item.urlToImage');">
                 <div class="roomContainerAlpha">
                     <a class="hotelName" asp-controller="Hotel" asp-action="BookRoom" asp-route-id="@item.RoomId">
-                        ⭑⭑⭑⭑
+                        @stars
                         <br />
                         @item.PricePerNight PLN
                     </a>
