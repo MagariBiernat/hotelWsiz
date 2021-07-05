@@ -30,7 +30,7 @@ namespace project.Models
         public int BedsQuantity { get; set; }
 
         [Required]
-        public bool IsApartament { get; set; }
+        public bool isAvailable { get; set; }
     }
 
 }
