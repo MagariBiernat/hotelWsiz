@@ -15,16 +15,16 @@ namespace project.Data
 
                 List<Room> rooms = new List<Room>
                 {
-                    new Room { RoomNumber=1, PricePerNight=200, StandardQuality=2, BedsQuantity=2, IsApartament=false},
-                    new Room { RoomNumber=2, PricePerNight=250, StandardQuality=2, BedsQuantity=2, IsApartament=false},
-                    new Room { RoomNumber=3, PricePerNight=200, StandardQuality=2, BedsQuantity=2, IsApartament=false},
-                    new Room { RoomNumber=4, PricePerNight=300, StandardQuality=2, BedsQuantity=2, IsApartament=false},
-                    new Room { RoomNumber=5, PricePerNight=250, StandardQuality=2, BedsQuantity=2, IsApartament=false},
-                    new Room { RoomNumber=6, PricePerNight=200, StandardQuality=2, BedsQuantity=2, IsApartament=false},
-                    new Room { RoomNumber=7, PricePerNight=250, StandardQuality=2, BedsQuantity=2, IsApartament=false},
-                    new Room { RoomNumber=8, PricePerNight=400, StandardQuality=3, BedsQuantity=4, IsApartament=true},
-                    new Room { RoomNumber=9, PricePerNight=400, StandardQuality=3, BedsQuantity=4, IsApartament=true},
-                    new Room { RoomNumber=10, PricePerNight=500, StandardQuality=3, BedsQuantity=5, IsApartament=true},
+                    new Room { RoomNumber=1, PricePerNight=200, StandardQuality=2, BedsQuantity=2},
+                    new Room { RoomNumber=2, PricePerNight=250, StandardQuality=2, BedsQuantity=2},
+                    new Room { RoomNumber=3, PricePerNight=200, StandardQuality=2, BedsQuantity=2},
+                    new Room { RoomNumber=4, PricePerNight=300, StandardQuality=2, BedsQuantity=2},
+                    new Room { RoomNumber=5, PricePerNight=250, StandardQuality=2, BedsQuantity=2},
+                    new Room { RoomNumber=6, PricePerNight=200, StandardQuality=2, BedsQuantity=2},
+                    new Room { RoomNumber=7, PricePerNight=250, StandardQuality=2, BedsQuantity=2},
+                    new Room { RoomNumber=8, PricePerNight=400, StandardQuality=3, BedsQuantity=4},
+                    new Room { RoomNumber=9, PricePerNight=400, StandardQuality=3, BedsQuantity=4},
+                    new Room { RoomNumber=10, PricePerNight=500, StandardQuality=3, BedsQuantity=4},
                 };
 
                 List<Hotel> hotels = new List<Hotel>
