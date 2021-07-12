@@ -33,10 +33,15 @@ namespace project.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var user = await _userManager.GetUserAsync(User);
 
-            return View();
+            var allBookings = await _context.Bookings.ToListAsync();
+
+            allBookings = allBookings.FindAll(b => b.CustomerId == user.Id);
+
+            return View(allBookings);
         }
 
         [HttpGet]

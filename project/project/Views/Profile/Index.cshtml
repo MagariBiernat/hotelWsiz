@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using project.Models
 
+
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @{
@@ -32,7 +33,7 @@
     <div>
         <h2>Your reservations</h2>
         <div>
-            Working on ...
+            @await Html.PartialAsync("_ListReservations")
         </div>
     </div>
 </div>

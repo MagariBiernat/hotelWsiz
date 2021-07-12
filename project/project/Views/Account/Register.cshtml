@@ -1,16 +1,11 @@
-﻿@using System.Collections.Generic
-@using System.Linq
-@using Microsoft.AspNetCore.Http
+﻿
 @model RegisterViewModel
 @{
     ViewData["Title"] = "Register";
 }
-
-<br />
 <div class="row">
     <div class="col-md-4">
         <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" style="width:350px">
-            <h4>Create a new account.</h4>
             <hr />
             <div class="form-group">
                 <label asp-for="FirstName" style="width:185px; display:inline-block;"></label>

@@ -4,6 +4,8 @@
     var HotelName = Model.Name;
     ViewData["Title"] = HotelName;
     List<project.Models.Room> rooms = ViewBag.Rooms;
+
+    var tempMessage = (string)TempData["Message"];
 }
 
 <div class="hotelHeader" style="background-image: url('@Html.DisplayFor(model => model.urlToImage)');">
@@ -13,25 +15,31 @@
 </div>
 
 <div>
+    @if (tempMessage != null)
+    {
+        <div>
+            <h2>@tempMessage</h2>
+        </div>
+    }
     @*<div>
-        @Html.DisplayFor(model => model.Name)
-    </div>
+            @Html.DisplayFor(model => model.Name)
+        </div>
 
-    <div>
-        @Html.DisplayFor(model => model.Stars) Stars
-    </div>
+        <div>
+            @Html.DisplayFor(model => model.Stars) Stars
+        </div>
 
-    <div>
-        Total rooms count @rooms.Count()
-    </div>*@
+        <div>
+            Total rooms count @rooms.Count()
+        </div>*@
 
     <div class="roomsContainer">
         @foreach (var item in rooms)
         {
 
-            
+
             string stars = new String('⭑', item.StandardQuality);
-            
+
 
             <div class="roomContainer" style="background-image: url('@item.urlToImage');">
                 <div class="roomContainerAlpha">
@@ -46,13 +54,13 @@
     </div>
 
     @*@foreach (var item in rooms)
-    {
-        <div>
-            Room number : @item.RoomNumber
-        </div>
-        <div>
-            Quality type : @item.StandardQuality
-        </div>
-    }*@
+        {
+            <div>
+                Room number : @item.RoomNumber
+            </div>
+            <div>
+                Quality type : @item.StandardQuality
+            </div>
+        }*@
     @*<a asp-controller="Hotel" asp-action="BookRoom" asp-route-id="@Model.Id"> Book Room </a>*@
 </div>

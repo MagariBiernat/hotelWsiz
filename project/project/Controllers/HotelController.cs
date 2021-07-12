@@ -35,15 +35,6 @@ namespace project.Controllers
             _context = context;
         }
 
-        // all hotels main page
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Hotels.ToListAsync());
-        }
-
-
         //get that one hotel
         [HttpGet]
         [AllowAnonymous]
@@ -86,9 +77,111 @@ namespace project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> BookRoom(Booking booking)
+        public async Task<IActionResult> BookRoom(int? roomId, Booking booking)
         {
-            return View();
+            var hotel = await _context.Rooms.SingleOrDefaultAsync(r => r.RoomId == roomId);
+
+            int hotelId = hotel.HotelId;
+
+            if (roomId == null)
+            {
+                return RedirectToAction(nameof(HotelIndex), new { id = hotelId });
+            }
+            
+            if (ModelState.IsValid)
+            {
+                var id = -1;
+                DateTime startDate = booking.StartDate;
+                DateTime endDate = booking.EndDate;
+
+                if(startDate <= DateTime.Today || startDate > endDate)
+                {
+                    ViewBag.Status = "Wrong dates";
+                    return View(booking);
+                }
+
+                var activeBookings = _context.Bookings.Where(booking => booking.IsActive);
+                var rooms = _context.Rooms;
+
+                foreach(var room in rooms)
+                {
+                    var activeBookingsForRoom = activeBookings.Where(booking => booking.RoomId == roomId);
+                    if(activeBookingsForRoom.All(b => startDate < b.StartDate &&
+                        endDate < b.StartDate || startDate > b.EndDate && endDate > b.EndDate))
+                    {
+                        id = room.RoomId;
+                        break;
+                    }
+                }
+
+                if(id >= 0)
+                {
+                    var user = await _userManager.GetUserAsync(User);
+
+                    booking.CustomerId = user.Id;
+                    booking.RoomId = id;
+                    booking.IsActive = true;
+                    _context.Bookings.Add(booking);
+                    await _context.SaveChangesAsync();
+                    TempData["Message"] = "Room booked successfully";
+                    return RedirectToAction(nameof(HotelIndex), new { id = hotelId });
+                }
+            }
+
+            var allRooms = await _context.Rooms.ToListAsync();
+
+            var roomToPass = allRooms.SingleOrDefault(item => item.RoomId == roomId);
+
+            ViewBag.Status = "The booking could not be created. There were no available room.";
+            ViewBag.Room = roomToPass;
+            return View(new { id = hotelId });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteBooking(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var booking = await _context.Bookings.SingleOrDefaultAsync(item => item.Id == id);
+
+            if(booking == null)
+            {
+                return NotFound();
+            }
+            return View(booking);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var booking = await _context.Bookings.SingleOrDefaultAsync(item => item.Id == id);
+
+            if (booking == null)
+            {
+                return NotFound();
+            }
+
+            _context.Bookings.Remove(booking);
+
+            var result = await _context.SaveChangesAsync();
+
+            if (result == 0)
+            {
+                TempData["Message"] = "There was a problem while deleting user";
+                return RedirectToAction(nameof(Index));
+            }
+
+            TempData["Message"] = "Account has been deleted successfully";
+            return RedirectToAction(nameof(Index));
         }
     }
 }

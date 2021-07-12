@@ -1,34 +1,15 @@
-﻿@model project.Models.Hotel
-
+﻿
 @{
-    var HotelName = Model.Name;
-    ViewData["Title"] = HotelName;
-
-    List<project.Models.Room> rooms = ViewBag.Rooms;
+    ViewData["Title"] = "About page";
 }
 
 
+
 <div>
-    <div>
-        @Html.DisplayFor(model => model.Name)
-    </div>
+   <h2>About Page</h2>
 
-    <div>
-        @Html.DisplayFor(model => model.Stars) Stars
-    </div>
-
-    <div>
-        Total rooms count @rooms.Count()
-    </div>
-
-    @foreach (var item in rooms)
-    {
-        <div>
-            Room number : @item.RoomNumber
-        </div>
-        <div>
-            Quality type : @item.StandardQuality
-        </div>
-    }
+   <p>
+       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mattis felis eros, ac facilisis arcu eleifend condimentum. Aenean sodales quam et molestie aliquet. Donec dignissim pretium libero at tristique. Sed ex erat, semper sit amet quam in, laoreet bibendum lectus.
+   </p>
 
 </div>

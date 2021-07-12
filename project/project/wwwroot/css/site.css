@@ -40,6 +40,10 @@ a:hover {
   border-color: #1861ac;
 }
 
+.nav-item > a {
+    color: white !important;
+}
+
 html {
   font-size: 14px;
 }
@@ -78,9 +82,23 @@ body {
 .footer {
   position: absolute;
   bottom: 0;
+  display:flex;
   width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+  margin-top:60px;
+  background:rgb(230,230,230);
+/*  white-space: nowrap;*/
+/*  line-height: 60px;*/
+}
+
+.footer > div {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    line-height:30px;
+}
+
+.footer > * > * {
+    line-height:30px;
 }
 
 
@@ -128,6 +146,16 @@ body {
     width: 100px;
     text-align: center;
     border-radius: 5px;
+}
+
+header{
+    background: rgba(10,10,10,.9);
+
+    color:white;
+}
+
+header * {
+    color:white !important;
 }
 
 .hotelHeader {

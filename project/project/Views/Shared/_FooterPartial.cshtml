@@ -15,11 +15,11 @@
 }
 
 
-<footer class="border-top footer text-muted">
+<footer class="border-top footer bg-gray-100 text-muted">
     @if (isAdmin)
     {
-        <div class="container flex justify-between">
-            <p>&copy; @DateTime.Now.Year - HotelReservation</p>
+        <div class="container flex flex-sm-row justify-between">
+            <p style="width:auto">&copy; @DateTime.Now.Year - HotelReservation</p>
             <a asp-controller="Admin" asp-action="Index">Admin Panel</a>
         </div>
     }

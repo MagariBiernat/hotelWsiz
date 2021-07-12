@@ -19,7 +19,7 @@
 
 <hr />
 <div class="bookPage">
-        <form asp-action="Create">
+        <form asp-action="BookRoom" asp-route-roomid="@room.RoomId">
             <div class="dateContainer">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">

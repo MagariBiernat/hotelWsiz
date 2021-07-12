@@ -15,8 +15,10 @@ namespace project.Models
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
 
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
 
         public int RoomId { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }
