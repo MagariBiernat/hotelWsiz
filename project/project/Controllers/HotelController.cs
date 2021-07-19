@@ -134,7 +134,7 @@ namespace project.Controllers
 
             ViewBag.Status = "The booking could not be created. There were no available room.";
             ViewBag.Room = roomToPass;
-            return View(new { id = hotelId });
+            return RedirectToAction(nameof(HotelIndex), new { id = hotelId });
         }
 
         [HttpGet]
@@ -177,11 +177,11 @@ namespace project.Controllers
             if (result == 0)
             {
                 TempData["Message"] = "There was a problem while deleting user";
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(HotelIndex));
             }
 
             TempData["Message"] = "Account has been deleted successfully";
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(HotelIndex));
         }
     }
 }
